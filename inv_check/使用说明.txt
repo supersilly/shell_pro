@@ -1,0 +1,7 @@
+1.inv.txt 里面是 发票数据
+2.test.sh 是测试脚本
+3.将测试脚步呢和发票数据放在linux系统下，在同级目录下执行
+cat inv.txt | grep -v ^# |  while read line ; do ./test.sh ${line}; done
+
+4.挑选单独发票执行（专票没有校验码可以不写）
+./test.sh  发票代码 发票号码 发票金额 发票时间 发票类型 校验码

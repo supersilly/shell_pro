@@ -1,0 +1,65 @@
+linux  使用git
+
+1.git的安装
+在centos上 直接yum -y install git的安装，其他的系统不再介绍
+2.git的初始化
+
+git init
+
+3.git 添加用户和密码
+
+在.git的目录下 有config 文件，添加 user 模块，加上用户名和密码
+开源的github上注册用户名 和 密码。
+本地创建git库。
+配置邮箱和用户名
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+生成证书
+ssh-keygen -t rsa -b 4096 -C "845046375@qq.com"
+启动agent
+eval "$(ssh-agent -s)"
+添加证书
+ssh-add ~/.ssh/id_rsa
+查看证书
+cat ~/.ssh/id_rsa.pub
+在github上的 个人的setting 里面 添加证书
+
+最后push到github上
+
+git remote add origin git@github.com:youusername/test.git
+git push -u origin master
+
+
+4.git中的查看、状态、增加、删除、下载、提交
+
+git ls-files  查看git文件
+git status  查看git状态
+git add file git添加文件
+git rm file  git删除文件
+git checkout  git的checkout
+git checkout -- file   git单独check指定文件
+git commit
+git commit -m "tyy add 3 files"
+git commit -a
+
+5.git的分支
+
+查看git的分支  git branch
+git添加分支 git branch b1
+git分支切换 git checkout b1
+git添加分支并直接切换 git checkout -b b2
+git删除分支  git branch -D b2
+git查看历史分支变化  git show-branch
+git把分支合并到当前分支  git merge branch_name  
+
+6.git复制
+
+git clone git@server:/srv/sample.git
+
+7.git log
+
+git log
+git log --pretty=oneline
+git reset --hard HEAD^    上一个版本 HEAD^  上上一个版本 HEAD^^  上上上一个版本 HEAD^^^ 上一百个版本 HEAD~100
+git reset --hard 版本号  回到指定的版本号
+git reflog

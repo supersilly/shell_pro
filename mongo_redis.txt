@@ -1,0 +1,64 @@
+mongo
+
+登录
+mongo 192.168.1.200:27017/test -u user -p password
+
+show dbs
+show collections
+db.repairDatabase()
+
+show profile
+
+ db.dropDatabase()
+ db.copyDatabase('','mail_addr_tmp')
+ db.system.users.find()
+ db.auth('name','pwd')
+ db.removeUser('name')
+ 
+ 查询数据
+ 
+ shell
+ echo -e "use dspmsg\db.dspactivate.find({"ckey": "202040040100"}).count()" | ./mongo
+ 
+ db.COLLECTION_NAME.find()
+ 例如：db.dspactivate.find({"ckey": "202040040100"}).count();
+ db.COLLECTION_NAME.find({'msg':'Hello 1'}).limit(10)
+ db.mycollection.find({$or: [{salary: {$lt:40}}, {salary: {$gt:200}}]});
+ db.mycollection.find({},{age:1,salary:1});
+ db.mycollection.find({username:/^a/});
+ db.mycollection.find({$or: [{salary: {$lt:40}}, {salary: {$gt:100}}]}).count();
+ 
+mongo WordPress --eval "show collections;"
+ 
+
+ 
+ 删除collections
+  db.COLLECTION_NAME.drop()
+  
+ 导出所有数据库
+ mongodump -h 127.0.0.1 -o /home/zhangy/mongodb/
+  
+ 导出tank数据库
+ mongodump -h 192.168.1.108 -d tank -o /home/zhangy/mongodb/
+ 
+ 恢复所有数据库到mongodb
+ mongorestore /home/zhangy/mongodb/
+ 
+ 还原tank的数据库
+ mongorestore -d tank /home/zhangy/mongodb/tank/
+ 
+ 模糊查询
+"ip": {$regex:/192\.168\.*/i} 
+ 
+ 
+ redis
+ 
+ redis-cli hgetAll sdk_device
+ redis-cli keys "*" | xargs redis-cli del
+ 
+  redis-cli keys "*" | xargs redis-cli del
+  
+  
+  reids 查看性能
+  redis-benchmark -q -n 100000
+ 
