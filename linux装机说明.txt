@@ -1,112 +1,112 @@
-一.修改网络
+脪禄.脨脼赂脛脥酶脗莽
 
 /etc/sysconfig/network-scripts/ifcfg-eth0 
 ONBOOT=yes
-BOOTPROTO="static" #dhcp改为static 
-ONBOOT="yes" #开机启用本配置
-IPADDR=192.168.7.106 #静态IP
-GATEWAY=192.168.7.1 #默认网关
-NETMASK=255.255.255.0 #子网掩码
-DNS1=192.168.7.1 #DNS 配置
+BOOTPROTO="static" #dhcp赂脛脦陋static 
+ONBOOT="yes" #驴陋禄煤脝么脫脙卤戮脜盲脰脙
+IPADDR=192.168.7.106 #戮虏脤卢IP
+GATEWAY=192.168.7.1 #脛卢脠脧脥酶鹿脴
+NETMASK=255.255.255.0 #脳脫脥酶脩脷脗毛
+DNS1=192.168.7.1 #DNS 脜盲脰脙
 
-修改后重启
+脨脼赂脛潞贸脰脴脝么
 service network restart
 yum install net-tools
 yum -y install wget
 
-关闭firewall：
-systemctl stop firewalld.service #停止firewall
-systemctl disable firewalld.service #禁止firewall开机启动
+鹿脴卤脮firewall拢潞
+systemctl stop firewalld.service #脥拢脰鹿firewall
+systemctl disable firewalld.service #陆没脰鹿firewall驴陋禄煤脝么露炉
 
 
-关闭SELINUX
+鹿脴卤脮SELINUX
 vi /etc/selinux/config
-#SELINUX=enforcing #注释掉
-#SELINUXTYPE=targeted #注释掉
-SELINUX=disabled #增加
-:wq! #保存退出
-setenforce 0 #使配置立即生效
+#SELINUX=enforcing #脳垄脢脥碌么
+#SELINUXTYPE=targeted #脳垄脢脥碌么
+SELINUX=disabled #脭枚录脫
+:wq! #卤拢麓忙脥脣鲁枚
+setenforce 0 #脢鹿脜盲脰脙脕垄录麓脡煤脨搂
 
 
-二.修改提权
-添加文件的写权限。也就是输入命令"chmod u+w /etc/sudoers"。
-编辑/etc/sudoers文件。也就是输入命令"vim /etc/sudoers",进入编辑模式，找到这一 行："root ALL=(ALL) ALL"在起下面添加"xxx ALL=(ALL) ALL"(这里的xxx是你的用户名)，然后保存退出。
-撤销文件的写权限。也就是输入命令"chmod u-w /etc/sudoers"
+露镁.脨脼赂脛脤谩脠篓
+脤铆录脫脦脛录镁碌脛脨麓脠篓脧脼隆拢脪虏戮脥脢脟脢盲脠毛脙眉脕卯"chmod u+w /etc/sudoers"隆拢
+卤脿录颅/etc/sudoers脦脛录镁隆拢脪虏戮脥脢脟脢盲脠毛脙眉脕卯"vim /etc/sudoers",陆酶脠毛卤脿录颅脛拢脢陆拢卢脮脪碌陆脮芒脪禄 脨脨拢潞"root ALL=(ALL) ALL"脭脷脝冒脧脗脙忙脤铆录脫"xxx ALL=(ALL) ALL"(脮芒脌茂碌脛xxx脢脟脛茫碌脛脫脙禄搂脙没)拢卢脠禄潞贸卤拢麓忙脥脣鲁枚隆拢
+鲁路脧煤脦脛录镁碌脛脨麓脠篓脧脼隆拢脪虏戮脥脢脟脢盲脠毛脙眉脕卯"chmod u-w /etc/sudoers"
 
-三.同步时间
+脠媒.脥卢虏陆脢卤录盲
 
-linux时间同步设置
+linux脢卤录盲脥卢虏陆脡猫脰脙
 
-首先同步时间服务器，time.nist.gov 是一个时间服务器.
-代码如下:
+脢脳脧脠脥卢虏陆脢卤录盲路镁脦帽脝梅拢卢time.nist.gov 脢脟脪禄赂枚脢卤录盲路镁脦帽脝梅.
+麓煤脗毛脠莽脧脗:
 ntpdate time.nist.gov
 
-删除本地时间并设置时区为上海
-代码代码如下:
+脡戮鲁媒卤戮碌脴脢卤录盲虏垄脡猫脰脙脢卤脟酶脦陋脡脧潞拢
+麓煤脗毛麓煤脗毛脠莽脧脗:
 rm -rf /etc/localtime
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-修改上传
+脨脼赂脛脡脧麓芦
 yum -y install lrzsz
 
 
 
-四.更换yum源
+脣脛.赂眉禄禄yum脭麓
 
-a进入存放源配置的文件夹
+a陆酶脠毛麓忙路脜脭麓脜盲脰脙碌脛脦脛录镁录脨
 cd /etc/yum.repos.d
 
-b备份默认源
+b卤赂路脻脛卢脠脧脭麓
 mv ./CentOS-Base.repo ./CentOS-Base.repo.bak
 
-c使用wget下载163的源 http://mirrors.163.com/.help/centos.html
+c脢鹿脫脙wget脧脗脭脴163碌脛脭麓 http://mirrors.163.com/.help/centos.html
 wget http://mirrors.163.com/.help/CentOS6-Base-163.repo
 
-d把下载下来的文件CentOS-Base-163.repo设置为默认源
+d掳脩脧脗脭脴脧脗脌麓碌脛脦脛录镁CentOS-Base-163.repo脡猫脰脙脦陋脛卢脠脧脭麓
 mv CentOS6-Base-163.repo CentOS-Base.repo
 
-通过上述操作就把默认源修改为163的了。当然上述的第三、四步可以合并为如下：
+脥篓鹿媒脡脧脢枚虏脵脳梅戮脥掳脩脛卢脠脧脭麓脨脼赂脛脦陋163碌脛脕脣隆拢碌卤脠禄脡脧脢枚碌脛碌脷脠媒隆垄脣脛虏陆驴脡脪脭潞脧虏垄脦陋脠莽脧脗拢潞
 wget http://mirrors.163.com/.help/CentOS6-Base-163.repo -O CentOS-Base.repo
 
-运行yum makecache生成缓存
+脭脣脨脨yum makecache脡煤鲁脡禄潞麓忙
 yum clean all
 yum makecache
 
 
-五.安装mysql
+脦氓.掳虏脳掳mysql
 
-CentOS7的yum源中默认好像是没有mysql的。为了解决这个问题，我们要先下载mysql的repo源。
+CentOS7碌脛yum脭麓脰脨脛卢脠脧潞脙脧帽脢脟脙禄脫脨mysql碌脛隆拢脦陋脕脣陆芒戮枚脮芒赂枚脦脢脤芒拢卢脦脪脙脟脪陋脧脠脧脗脭脴mysql碌脛repo脭麓隆拢
 
-1. 下载mysql的repo源
+1. 脧脗脭脴mysql碌脛repo脭麓
 
 $ wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
 
-2. 安装mysql-community-release-el7-5.noarch.rpm包
+2. 掳虏脳掳mysql-community-release-el7-5.noarch.rpm掳眉
 
 $ sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
 
-安装这个包后，会获得两个mysql的yum repo源：/etc/yum.repos.d/mysql-community.repo，/etc/yum.repos.d/mysql-community-source.repo。
+掳虏脳掳脮芒赂枚掳眉潞贸拢卢禄谩禄帽碌脙脕陆赂枚mysql碌脛yum repo脭麓拢潞/etc/yum.repos.d/mysql-community.repo拢卢/etc/yum.repos.d/mysql-community-source.repo隆拢
 
-3. 安装mysql
+3. 掳虏脳掳mysql
 
 $ sudo yum install mysql-server
 
-根据步骤安装就可以了，不过安装完成后，没有密码，需要重置密码。
+赂霉戮脻虏陆脰猫掳虏脳掳戮脥驴脡脪脭脕脣拢卢虏禄鹿媒掳虏脳掳脥锚鲁脡潞贸拢卢脙禄脫脨脙脺脗毛拢卢脨猫脪陋脰脴脰脙脙脺脗毛隆拢
 
-4. 重置密码
+4. 脰脴脰脙脙脺脗毛
 
-重置密码前，首先要登录
+脰脴脰脙脙脺脗毛脟掳拢卢脢脳脧脠脪陋碌脟脗录
 
 $ mysql -u root
 
-登录时有可能报这样的错：ERROR 2002 (HY000): Can‘t connect to local MySQL server through socket ‘/var/lib/mysql/mysql.sock‘ (2)，原因是/var/lib/mysql的访问权限问题。下面的命令把/var/lib/mysql的拥有者改为当前用户：
+碌脟脗录脢卤脫脨驴脡脛脺卤篓脮芒脩霉碌脛麓铆拢潞ERROR 2002 (HY000): Can隆庐t connect to local MySQL server through socket 隆庐/var/lib/mysql/mysql.sock隆庐 (2)拢卢脭颅脪貌脢脟/var/lib/mysql碌脛路脙脦脢脠篓脧脼脦脢脤芒隆拢脧脗脙忙碌脛脙眉脕卯掳脩/var/lib/mysql碌脛脫碌脫脨脮脽赂脛脦陋碌卤脟掳脫脙禄搂拢潞
 
 $ sudo chown -R openscanner:openscanner /var/lib/mysql
 
-然后，重启服务：
+脠禄潞贸拢卢脰脴脝么路镁脦帽拢潞
 
 $ service mysqld restart
 
-接下来登录重置密码：
+陆脫脧脗脌麓碌脟脗录脰脴脰脙脙脺脗毛拢潞
 
 $ mysql -u root
 
@@ -114,19 +114,19 @@ mysql > use mysql;
 mysql > update user set password=password('123456') where user='root';
 mysql > exit;
 
-5. 开放3306端口
+5. 驴陋路脜3306露脣驴脷
 
 $ sudo vim /etc/sysconfig/iptables
 
-添加以下内容：
+脤铆录脫脪脭脧脗脛脷脠脻拢潞
 
 -A INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEPT
 
-保存后重启防火墙：
+卤拢麓忙潞贸脰脴脝么路脌禄冒脟陆拢潞
 
 $ sudo service iptables restart
 
-这样从其它客户机也可以连接上mysql服务了。
+脮芒脩霉麓脫脝盲脣眉驴脥禄搂禄煤脪虏驴脡脪脭脕卢陆脫脡脧mysql路镁脦帽脕脣隆拢
 
 
 jenkins
@@ -138,12 +138,12 @@ yum -y install jenkins
 
 
 
-二、调整虚拟机磁盘LVM
+露镁隆垄碌梅脮没脨茅脛芒禄煤麓脜脜脤LVM
 
-1.查看现有的硬盘分区（现在空间没有变大）
+1.虏茅驴麓脧脰脫脨碌脛脫虏脜脤路脰脟酶拢篓脧脰脭脷驴脮录盲脙禄脫脨卤盲麓贸拢漏
 #df -h
 
-2.对新增的硬盘空间做新增分区（硬盘数没有增加，增加的是空间）
+2.露脭脨脗脭枚碌脛脫虏脜脤驴脮录盲脳枚脨脗脭枚路脰脟酶拢篓脫虏脜脤脢媒脙禄脫脨脭枚录脫拢卢脭枚录脫碌脛脢脟驴脮录盲拢漏
 #fdisk /dev/sda
 
 The number of cylinders for this disk is set to 7832.
@@ -153,23 +153,23 @@ and could in certain setups cause problems with:
 2) booting and partitioning software from other OSs
    (e.g., DOS FDISK, OS/2 FDISK)
  
-Command (m for help): n 说明：新增分区
+Command (m for help): n 脣碌脙梅拢潞脨脗脭枚路脰脟酶
 Command action
    e   extended
    p   primary partition (1-4)
 p
-Partition number (1-4): 3 说明：新增分区号（1，2默认已经用了）
-First cylinder (2611-7832, default 2611): 默认回车（最小）
+Partition number (1-4): 3 脣碌脙梅拢潞脨脗脭枚路脰脟酶潞脜拢篓1拢卢2脛卢脠脧脪脩戮颅脫脙脕脣拢漏
+First cylinder (2611-7832, default 2611): 脛卢脠脧禄脴鲁碌拢篓脳卯脨隆拢漏
 Using default value 2611
-Last cylinder or +size or +sizeM or +sizeK (2611-7832, default 7832):默认回车（最大）
+Last cylinder or +size or +sizeM or +sizeK (2611-7832, default 7832):脛卢脠脧禄脴鲁碌拢篓脳卯麓贸拢漏
 Using default value 7832
  
-Command (m for help): t 说明：修改分区类型
-Partition number (1-4): 3 说明：修改分区类型对应的分区号
-Hex code (type L to list codes): 8e 说明：8e是lvm磁盘类型
+Command (m for help): t 脣碌脙梅拢潞脨脼赂脛路脰脟酶脌脿脨脥
+Partition number (1-4): 3 脣碌脙梅拢潞脨脼赂脛路脰脟酶脌脿脨脥露脭脫娄碌脛路脰脟酶潞脜
+Hex code (type L to list codes): 8e 脣碌脙梅拢潞8e脢脟lvm麓脜脜脤脌脿脨脥
 Changed system type of partition 3 to 8e (Linux LVM)
  
-Command (m for help): p 说明：打印分区表
+Command (m for help): p 脣碌脙梅拢潞麓貌脫隆路脰脟酶卤铆
  
 Disk /dev/sda: 64.4 GB, 64424509440 bytes
 255 heads, 63 sectors/track, 7832 cylinders
@@ -180,59 +180,59 @@ Units = cylinders of 16065 * 512 = 8225280 bytes
 /dev/sda2              14        2610    20860402+  8e  Linux LVM
 /dev/sda3            2611        7832    41945715   8e  Linux LVM
  
-Command (m for help): w 说明：保存退出
+Command (m for help): w 脣碌脙梅拢潞卤拢麓忙脥脣鲁枚
 The partition table has been altered!
 
-3.重启系统
+3.脰脴脝么脧碌脥鲁
 #reboot
 
-4.查看硬盘情况（核对刚才所做的分区操作是否保存成功）
+4.虏茅驴麓脫虏脜脤脟茅驴枚拢篓潞脣露脭赂脮虏脜脣霉脳枚碌脛路脰脟酶虏脵脳梅脢脟路帽卤拢麓忙鲁脡鹿娄拢漏
 #fdisk -l
 
-5.查看当前分区的类型
-#df -T /dev/sda1 说明：查看当前的主分区类型
+5.虏茅驴麓碌卤脟掳路脰脟酶碌脛脌脿脨脥
+#df -T /dev/sda1 脣碌脙梅拢潞虏茅驴麓碌卤脟掳碌脛脰梅路脰脟酶脌脿脨脥
 
-6.创建文件系统在新的磁盘上
-#mkfs.ext4 /dev/sda3 说明：ext4为你查看到的文件系统类型（ext2、ext3、ext4等）
+6.麓麓陆篓脦脛录镁脧碌脥鲁脭脷脨脗碌脛麓脜脜脤脡脧
+#mkfs.ext4 /dev/sda3 脣碌脙梅拢潞ext4脦陋脛茫虏茅驴麓碌陆碌脛脦脛录镁脧碌脥鲁脌脿脨脥拢篓ext2隆垄ext3隆垄ext4碌脠拢漏
 
-7.创建PV（pv组成vg，vg组成lv）
+7.麓麓陆篓PV拢篓pv脳茅鲁脡vg拢卢vg脳茅鲁脡lv拢漏
 #pvcreate /dev/sda3
-查看pv状态
+虏茅驴麓pv脳麓脤卢
 #pvdisplay
-查看vg状态
+虏茅驴麓vg脳麓脤卢
 #vgdisplay
 
-8.刚创建的PV加入相应的VG
-#vgextend vg_centos /dev/sda3 说明：vg_centos是我的服务器vg名称，请通过查看vg状态得到名称VG name
+8.赂脮麓麓陆篓碌脛PV录脫脠毛脧脿脫娄碌脛VG
+#vgextend vg_centos /dev/sda3 脣碌脙梅拢潞vg_centos脢脟脦脪碌脛路镁脦帽脝梅vg脙没鲁脝拢卢脟毛脥篓鹿媒虏茅驴麓vg脳麓脤卢碌脙碌陆脙没鲁脝VG name
 
-9.查看LV状态，把VG加入到LV
+9.虏茅驴麓LV脳麓脤卢拢卢掳脩VG录脫脠毛碌陆LV
 #lvdisplay
 
-10.lvextend -l +2559 /dev/VolGroup00/LogVol00 说明：2559为上面pvdisplay查看到的free的PE数量
+10.lvextend -l +2559 /dev/VolGroup00/LogVol00 脣碌脙梅拢潞2559脦陋脡脧脙忙pvdisplay虏茅驴麓碌陆碌脛free碌脛PE脢媒脕驴
 
-11.用xfs_growfs 调整文件系统大小
+11.脫脙xfs_growfs 碌梅脮没脦脛录镁脧碌脥鲁麓贸脨隆
 xfs_growfs /dev/centos/root
 
 
 
-JAVA配置
+JAVA脜盲脰脙
 
 export JAVA_HOME=/usr/java/jdk1.7.0_79
 export PATH=$JAVA_HOME/bin:$PATH
 export CLASSPATH=$JAVA_HOME/lib
 
-source /etc/profile 实时生效
+source /etc/profile 脢碌脢卤脡煤脨搂
 
 
-修改urandom
- $JAVA_HOME/jre/lib/security/java.security 文件，替换securerandom.source=file:/dev/random 为 securerandom.source=file:/dev/./urandom
+脨脼赂脛urandom
+ $JAVA_HOME/jre/lib/security/java.security 脦脛录镁拢卢脤忙禄禄securerandom.source=file:/dev/random 脦陋 securerandom.source=file:/dev/./urandom
  
- 安装svn
+ 掳虏脳掳svn
  yum -y install subversion
  
  
- linux开启GD2  yum -y install php-gd
- linux开启 dom  yum install php-xml
+ linux驴陋脝么GD2  yum -y install php-gd
+ linux驴陋脝么 dom  yum install php-xml
  
 ulimit -n 
 * soft noproc 65535
@@ -241,7 +241,7 @@ ulimit -n
 * hard nofile 65535
 
 
-nmon安装
+nmon掳虏脳掳
 lmon16e.c  and  makefile
 ln lmon16e.c lmon.c
 yum install gcc*
@@ -253,5 +253,5 @@ ln nmon_power_ubuntu1504 nmon
 cp nmon_power_ubuntu1504 /usr/bin/nmon
 
 
-安装php
+掳虏脳掳php
 php56w.x86_64 php56w-cli.x86_64 php56w-common.x86_64 php56w-dba.x86_64 php56w-devel.x86_64 php56w-embedded.x86_64 php56w-fpm.x86_64 php56w-gd.x86_64 php56w-mcrypt.x86_64 php56w-mysql.x86_64 php56w-pecl-redis.x86_64 php56w-xml.x86_64 php56w-pdo.x86_64
