@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DATA>
+	<HEAD>
+		
+		<TAXNO>91511000671418192F</TAXNO>
+		
+		<DATE>20161224</DATE>
+		
+		<SN>4200</SN>
+		
+		<TYPE>21</TYPE>
+		
+		<TOTAL>4</TOTAL>
+		
+	</HEAD>
+	<BODY>
+		
+		<INV>
+			<NO>1</NO>
+			
+			<FPDM>5100153130</FPDM>
+			
+			<FPHM>04054238</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>2</NO>
+			
+			<FPDM>5100153130</FPDM>
+			
+			<FPHM>04054225</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>3</NO>
+			
+			<FPDM>3200162160</FPDM>
+			
+			<FPHM>05897916</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>4</NO>
+			
+			<FPDM>5100153130</FPDM>
+			
+			<FPHM>04054245</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+	</BODY>
+</DATA>

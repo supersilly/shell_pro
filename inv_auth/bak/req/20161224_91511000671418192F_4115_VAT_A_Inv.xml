@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DATA>
+	<HEAD>
+		
+		<TAXNO>91511000671418192F</TAXNO>
+		
+		<DATE>20161224</DATE>
+		
+		<SN>4115</SN>
+		
+		<TYPE>21</TYPE>
+		
+		<TOTAL>10</TOTAL>
+		
+	</HEAD>
+	<BODY>
+		
+		<INV>
+			<NO>1</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365314</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>2</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365316</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>3</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365317</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>4</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365318</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>5</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365332</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>6</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365323</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>7</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365326</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>8</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365327</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>9</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365328</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+		<INV>
+			<NO>10</NO>
+			
+			<FPDM>5100161130</FPDM>
+			
+			<FPHM>05365321</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+	</BODY>
+</DATA>

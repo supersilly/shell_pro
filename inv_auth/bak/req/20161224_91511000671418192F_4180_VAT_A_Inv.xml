@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DATA>
+	<HEAD>
+		
+		<TAXNO>91511000671418192F</TAXNO>
+		
+		<DATE>20161224</DATE>
+		
+		<SN>4180</SN>
+		
+		<TYPE>21</TYPE>
+		
+		<TOTAL>1</TOTAL>
+		
+	</HEAD>
+	<BODY>
+		
+		<INV>
+			<NO>1</NO>
+			
+			<FPDM>5100153130</FPDM>
+			
+			<FPHM>04054153</FPHM>
+			
+			<RZSKSSQ>201612</RZSKSSQ>
+		</INV>
+	</BODY>
+</DATA>
