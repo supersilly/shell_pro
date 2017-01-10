@@ -1,0 +1,10 @@
+local_root=/var/ftp/
+#虚拟用户根目录,根据实际情况修改  该目录必须要有读写权限 chmod -R 777 目录
+write_enable=YES
+#可写
+anon_umask=022
+#掩码 
+anon_world_readable_only=NO
+anon_upload_enable=YES
+anon_mkdir_write_enable=YES
+anon_other_write_enable=YES
