@@ -130,13 +130,12 @@ do
     do
     au_kind=`echo $line | cut -d "," -f 1`
     au_num=`echo $line | cut -d "," -f 2`
+    inv_date=`date -d "3 day ago" +%Y%m%d`
     if [ -f $bak_inv ]; then
       wc_bakinv=`cat $bak_inv | grep ${au_num} | wc -l`
       if [ $wc_bakinv -eq 1 ]; then
         inv_date=`cat $bak_inv | grep ${au_num} | sed 's/.*<KPRQ>\([0-9]*\)<\/KPRQ>.*/\1/g'`
       fi
-    else
-      inv_date=`date -d "3 day ago" +%Y%m%d`
     fi
    ((au_pic_num=${au_pic_num}+1))
   #  echo "num is "${num}
