@@ -61,6 +61,20 @@ else
   exit 1
 fi
 
+#delete redundant dubbo app
+file=startup/pom.xml
+if [ -f ${file} ]; then
+  sed -i ":begin; { /-->/! { $! { N; b begin }; }; s/<\!--.*-->/ /; };" $file
+  cat $file | grep artifactId | grep baiwangcloud | grep -o baiwangcloud.*service | sed s/baiwangcloud//g |sed s/service//g | tr -d "\." >delete
+  for rm_dubbo in `cat delete`
+    do
+      rm -rf ${rm_dubbo}
+    done
+else
+  echo "$file"
+fi
+unset file
+
 #deploy tomcat...
 cd ${tom_dir}
 if [ -f "deploy" ]; then
