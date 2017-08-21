@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="http://webservice.fpcxService.gwssi.com/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <web:jyxxQxrzDownload>
+         <!--Optional:-->
+         <arg0>{"wsName":"admin","wsSignature":"87e05d48ea064a091d2d56933381629b","wsTime":"20170611141812","cert":"91429004760681451F","hxzt":"0","kprq_q":"2016-12-12","kprq_z":"2017-01-01","token":"db630dce-dca9-486d-bd5a-c69654ba4d09","dqdm":"4200"}</arg0>
+      </web:jyxxQxrzDownload>
+   </soapenv:Body>
+</soapenv:Envelope>
