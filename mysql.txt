@@ -310,6 +310,15 @@ update mysql.user set authentication_string=password('#Ud2016fp^,ww') where user
  status  查看 数据库的状态
  use information_schema;
  select * from PROCESSLIST where info is not null;
+ 
+ 
+整库迁移
+
+1备份
+mysqldump -u root -p --all-databases > jdbak.sql
+2.还原
+mysql -u root -p < jdbak.sql
+
 
 
 
