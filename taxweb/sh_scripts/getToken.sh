@@ -1,5 +1,5 @@
 #!/bin/bash 
-#set -x
+set -x
 web="http://ivs.baiwang.com/jxfp/api/gwsoft/getToken"
 username="admin" 
 pw="gwsoftadmin" 
@@ -14,6 +14,7 @@ for ((i=0;i<1;))
   do
     rel=`curl -s ${web}?${para}`
     token=`echo ${rel} | grep token | grep -v "grep" | sed 's/\(.*\)token":"\([^"]*\)","\(.*\)/\2/g'`
+    #token=`echo ${rel} | grep token | grep -v "grep" | sed 's/\(.*\)token":"\([^"]*\)","\(.*\)/\2/g' | cut -d "~" -f 3`
     #check whether token is not null, if not null,set i equals 1,to break the loop
     if [ -n "${token}" ]; then
       echo "${token}"
