@@ -277,3 +277,5 @@ vi /etc/fstab
 ³É¹û£º 
 free -m
 swapon -s
+
+

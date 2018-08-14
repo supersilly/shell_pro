@@ -3,6 +3,7 @@
 grep "password" /var/log/mysqld.log
 
 alter user 'root'@'localhost'  identified  by  'm!63#dif^W';
+alter user 'xiang'@'%'  identified  by  'nEw-TESt@&2#';
 
 
 
@@ -47,6 +48,10 @@ grant all privileges on lebao.* to 'invtest'@'%' identified by 'xiangcao';
 grant all privileges on lebao.* to 'invtest'@'localhost' identified by 'xiangcao';
 grant all privileges on suibian.* to 'invtest'@'localhost' identified by 'xiangcao';
 grant all privileges on suibian.* to 'invtest'@'%' identified by 'xiangcao';
+
+global
+
+
 
 mysql主从复制
 （超简单）
@@ -319,6 +324,40 @@ mysqldump -u root -p --all-databases > jdbak.sql
 2.还原
 mysql -u root -p < jdbak.sql
 
+
+
+提高还原的效率：
+Percona's Vadim Tkachenko made this fine Pictorial Representation of InnoDB
+
+InnoDB Architecture
+
+You definitely need to change the following：
+
+innodb_buffer_pool_size = 4G
+innodb_log_buffer_size = 256M
+innodb_log_file_size = 1G
+innodb_write_io_threads = 16
+innodb_flush_log_at_trx_commit = 0
+
+
+Why these settings ?
+
+innodb_buffer_pool_size will cache frequently read data
+innodb_log_buffer_size : Larger buffer reduces write I/O to Transaction Logs
+innodb_log_file_size : Larger log file reduces checkpointing and write I/O
+innodb_write_io_threads : Service Write Operations to .ibd files. According to MySQL Documentation on Configuring the Number of Background InnoDB I/O Threads, each thread can handle up to 256 pending I/O requests. Default for MySQL is 4, 8 for Percona Server. Max is 64.
+innodb_flush_log_at_trx_commit
+In the event of a crash, both 0 and 2 can lose once second of data.
+The tradeoff is that both 0 and 2 increase write performance.
+I choose 0 over 2 because 0 flushes the InnoDB Log Buffer to the Transaction Logs (ib_logfile0, ib_logfile1) once per second, with or without a commit. Setting 2 flushes the InnoDB Log Buffer only on commit. There are other advantages to setting 0 mentioned by @jynus, a former Percona instructor.
+Restart mysql like this
+
+service mysql restart --innodb-doublewrite=0
+This disables the InnoDB Double Write Buffer
+
+Import your data. When done, restart mysql normally
+
+service mysql restart
 
 
 

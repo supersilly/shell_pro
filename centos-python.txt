@@ -1,0 +1,21 @@
+yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make
+
+mv python python.bak
+
+./configure prefix=/usr/local/python3
+
+make && make install
+
+ln -s /usr/local/python3/bin/python3 /usr/bin/python
+ln -s /usr/local/python3/bin/python3 /usr/bin/python3
+
+ln -s /usr/local/python3/bin/pip3 /usr/bin/pip
+
+
+
+cd /usr/bin
+ls yum*
+
+vi /usr/bin/yum
+
+把#! /usr/bin/python修改为#! /usr/bin/python2.6

@@ -4,9 +4,16 @@ if [ $# -ne 1 ]; then
   echo "you must hava a param as taxno!"
   exit 0
 fi
-bak_dir=/var/ftp/bak/
-file_dir=/var/ftp/taxtest/S/WORK/OUT/
+#mk_flag=mking
+bak_dir=/mnt/storage/bak/
+file_dir=/mnt/storage/ftp/INV/S/WORK/C/
 bak_inv=${bak_dir}inv_all.txt
+log=/mnt/storage/sh_scripts/taxnolog.txt
+#if [ -f $mk_flag ]; then
+#   echo "mking"
+#   exit 1
+#fi
+#touch $mk_flag 
 if [ ! -d ${file_dir} ]; then
   mkdir -p ${file_dir}
 fi
@@ -18,14 +25,22 @@ tax_no=$1
 date=`date +%Y%m%d`
 inv_date=`date -d "3 day ago" +%Y%m%d`
 month=`date +%Y%m`
-inv_dm=`date +%s`
-inv_num=${inv_dm:0-8}
-sn=`date +%s | md5sum | cut -d " " -f 1`
-#20170105_91511000671418192F_402880bd5938fa3a01596c6d06ee3671_VAT_S_Inv.xml
+inv_dm_pre=`date +%s%N`
+inv_nm=${inv_dm_pre:6:7}
+inv_r=$(($RANDOM%8+1))
+inv_num=${inv_r}${inv_nm}
+inv_dm_year=`date +%M`
+inv_dm_7d=`date +%S`
+inv_dm_7=$((10#${inv_dm_7d}%8+1))
+inv_dm="5100"${inv_dm_year}${inv_dm_7}"130"
+
+sn=`cat /proc/sys/kernel/random/uuid | sed 's/-//g'`
 filename="${date}_${tax_no}_${sn}_VAT_S_Inv.xml"
-pieces_ran=${RANDOM:0-2:2}
-let inv_pieces=${pieces_ran}
-cl_inv_head='<?xml version="1.0" encoding="UTF-8"?><DATA><HEAD><TAXNO>'${tax_no}'</TAXNO><DATE>'${date}'</DATE><SN>'${sn}'</SN><TYPE>11</TYPE><TOTAL>'${inv_pieces}'</TOTAL><DQSKSSQ>'${month}'</DQSKSSQ><GXJZR>'$(date -d "-1 month ago" +%Y%m18)'</GXJZR><GXFW>'$(date -d "180 day ago `date +%Y%m01`" +%Y%m%d)'-'${month}"31"'</GXFW></HEAD><BODY>'
+pieces_ran=$[RANDOM%100]
+inv_time=`date +%Y%m%d-%H:%M:%S`
+let inv_pieces=${pieces_ran}+10
+echo "inv amount: ${inv_time} $tax_no $inv_pieces">>$log
+cl_inv_head='<?xml version="1.0" encoding="UTF-8"?><DATA><HEAD><TAXNO>'${tax_no}'</TAXNO><DATE>'${date}'</DATE><SN>'${sn}'</SN><TYPE>11</TYPE><TOTAL>'${inv_pieces}'</TOTAL><DQSKSSQ>'${month}'</DQSKSSQ><GXJZR>'$(date -d "-1 month ago" +%Y%m15)'</GXJZR><GXFW>'$(date -d "360 day ago `date +%Y%m01`" +%Y%m%d)'-'$(date -d"$(date -d"1 month" +"%Y%m01") -1 day" +"%Y%m%d")'</GXFW></HEAD><BODY>'
 cl_inv_body=''
 echo ${cl_inv_head}>>${bak_inv}
 for((i=0;i<${inv_pieces};i++))
